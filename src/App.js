@@ -1,22 +1,44 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import './App.css';
+import Login from './components/Login';
+import Logout from './components/Logout';
+import Registration from './components/Registration';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from './components/Home';
+import MyProfile from './components/MyProfile';
+import ManageDocument from './components/ManageDocument';
 
 function App() {
+  const auth= getAuth();
+  useEffect(()=>{
+    onAuthStateChanged(auth, (data)=>{
+    if(data){
+        alert("Logged In")
+    }else {
+        alert("Not Logged In")
+    }
+    })
+   },[])
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      
+        <Router>
+        <h2>Government Doc Vault</h2>
+          <Routes>
+            <Route path='/' element={<Home/>} exact/>
+            <Route path='/registration' element={<Registration/>} exact/>
+            <Route path='/login' element={<Login/>} exact/>
+            <Route path='/logout' element={<Logout/>} exact/>
+            <Route path='/myprofile' element={<MyProfile/>} exact/>
+            <Route path='/managedocument' element={<ManageDocument/>} exact/>
+          </Routes>
+      
+        {/* <Registration/>
+        <Login/>
+        <Logout/> */}
+        </Router>
       </header>
     </div>
   );
