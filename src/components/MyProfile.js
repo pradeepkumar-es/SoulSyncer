@@ -23,7 +23,7 @@ function MyProfile(props) {
       <p id='userId'>User Id: {props.uid}</p>
       <p id='userEmail'>Email: {props.user}</p>
       {/* <p id='userEmailVerification'>Email Verification Status: {props.emailStatus}</p> */}
-      <p onClick={manageDoc}>Manage My Document</p> 
+      <p className='myprofile-managedoc' onClick={manageDoc}>Manage My Document</p> 
       <Logout/>
     </div>
   )

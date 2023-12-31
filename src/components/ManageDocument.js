@@ -99,7 +99,7 @@ const auth= getAuth();
                                         return {...item.data(), id: item.id};
                                     }))
                     })
-            //for selected only
+            //for selected only in real time
             // const uidQuery =query(collectionRef, where("uid", "==", user.uid) )
             //      onSnapshot(uidQuery, (response)=>{  //for selected response
             //             setArray(
