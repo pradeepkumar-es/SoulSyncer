@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import './App.css';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -10,16 +10,16 @@ import MyProfile from './components/MyProfile';
 import ManageDocument from './components/ManageDocument';
 
 function App() {
-  const auth= getAuth();
-  useEffect(()=>{
-    onAuthStateChanged(auth, (data)=>{
-    if(data){
-        alert("Logged In")
-    }else {
-        alert("Not Logged In")
-    }
-    })
-   },[])
+  // const auth= getAuth();
+  // useEffect(()=>{
+  //   onAuthStateChanged(auth, (data)=>{
+  //   if(data){
+  //       alert("You are Logged In")
+  //   }else {
+  //       alert("You are Logged Out")
+  //   }
+  //   })
+  //  },[])
   return (
     <div className="App">
       <header className="App-header">
@@ -34,10 +34,6 @@ function App() {
             <Route path='/myprofile' element={<MyProfile/>} exact/>
             <Route path='/managedocument' element={<ManageDocument/>} exact/>
           </Routes>
-      
-        {/* <Registration/>
-        <Login/>
-        <Logout/> */}
         </Router>
       </header>
     </div>

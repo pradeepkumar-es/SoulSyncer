@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Logout from './Logout';
 // import { app } from '../firebase';
 // import React, { useState } from "react";
 // // import firebase from "firebase/app";
@@ -7,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 // import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-function MyProfile() {
+function MyProfile(props) {
     // const uid = app.auth().currentUser.uid;
     // const email = app.auth().currentUser.email;
     // const auth =getAuth();
@@ -19,9 +20,11 @@ function MyProfile() {
   return (
     <div>
       My Profile
+      <p id='userId'>User Id: {props.uid}</p>
+      <p id='userEmail'>Email: {props.user}</p>
+      {/* <p id='userEmailVerification'>Email Verification Status: {props.emailStatus}</p> */}
       <p onClick={manageDoc}>Manage My Document</p> 
-      {/* <p>{uid}</p>
-      <p>{email}</p> */}
+      <Logout/>
     </div>
   )
 // const [email, setEmail] = useState("");
