@@ -1,22 +1,25 @@
 import React, { useState,useEffect } from "react";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import MyProfile from "./MyProfile";
+
 export default function Login() {
     const auth = getAuth();
-    // const navigate = useNavigate();
     const [data, setData] = useState({})
     const [user, setUser] = useState(null)
+
+    //handling data received from user input
     const handleInput=(event)=>{
         let newItem= {[event.target.name]: event.target.value}
         setData({...data, ...newItem})
     }
+
+    //handling login with the help of Firebase
     const handleLogin=()=>{
          signInWithEmailAndPassword(auth, data.email, data.password)
         .then((response)=>{
             alert(response.user)
             setUser(response.user)
-            // navigate('/myprofile')
         })
         .catch((err)=>{
             alert(err.message)
@@ -24,29 +27,25 @@ export default function Login() {
         })
     }
     
+  //setting user data on authentication change with the help of firebase
   useEffect(()=>{
-//    const userAuth= onAuthStateChanged(auth, (user)=>{
    onAuthStateChanged(auth, (user)=>{
     if(user){
-        // alert("You are Logged In")
         setUser(user)
     }else {
-        // alert("You are Logged Out")
         setUser(null)
     }
     })
-   
-//    return ()=>userAuth(); 
     }
    ,[])
     return (
-        <div>
+        <div>  
+            {/* displaying user's profile, if on authetication change we are getting user, otherwise displaying login inteface.*/}
             {user ? (
             <>
             <MyProfile 
-            uid={user.uid}
+            uid={user.uid}   //passing props to my profile function component
             user={user.email}
-            // emailStatus={user.emailVerified}
             />
             </>) 
             : ( 
@@ -57,7 +56,7 @@ export default function Login() {
             <button onClick={handleLogin}>Login</button>
             <p>Don't have account?</p>
             <span><Link to='/registration'>Register</Link></span>
-            <p id="userEmailVerification"></p>
+            <p id="userEmailVerification">veri</p>
             </div>)
         }
         </div>
