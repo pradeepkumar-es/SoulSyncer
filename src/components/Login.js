@@ -56,7 +56,6 @@ export default function Login() {
             <button onClick={handleLogin}>Login</button>
             <p>Don't have account?</p>
             <span><Link to='/registration'>Register</Link></span>
-            <p id="userEmailVerification">veri</p>
             </div>)
         }
         </div>

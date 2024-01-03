@@ -1,11 +1,9 @@
-// Import the functions you need from the SDKs you need
+// Importing the functions needed from the SDKs
 import { initializeApp } from "firebase/app";
 import {getStorage} from "firebase/storage"
 import {getFirestore} from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Website app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD39vIw96OEoixW1tUHMVH28HAZYv3ID4A",
   authDomain: "govt-doc-vault-84578.firebaseapp.com",
@@ -17,5 +15,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+
+//initializing Cloud Firestore
 export const database =getFirestore(app);
+
+//initializing storage in firebase
 export const storage  = getStorage(app);

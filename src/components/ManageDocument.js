@@ -6,43 +6,32 @@ import {ref,
          uploadBytesResumable,
          getDownloadURL} from 'firebase/storage'
 import { collection,
-          addDoc,
-         getDocs, //for getting data but we need to refresh every time data changes 
+          addDoc, 
          doc,  //for update doc
          updateDoc, //for update doc
          deleteDoc,
          onSnapshot, //for get Data //for real time update
-         query, //for filtering data
-         where  //for filtering data
       } from 'firebase/firestore';
-import { v4 } from 'uuid';
+import { v4 } from 'uuid';   //gor generating unique id for different uploads to rename it
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-function ManageDocument() {
-  // const [userFile, setUserFile] = useState({});
+function ManageDocument() { //functional component to manage document
   const [array, setArray] = useState([])
   const [uploadProgress, setUploadprogress] = useState('')
   const [imgUrl, setImgUrl] =useState('')
   const [docName, setDocName]=useState('')
   const [user,setUser] = useState(null)
-  
-console.log(user)
-  // const handleInput=(event)=>{
-  //   let newItem = {[event.target.name]:event.target.value}
-  //   setUserFile({...userFile, ...newItem });
-  // }
-const auth= getAuth();
+
+const auth= getAuth(); //firebase
   useEffect(()=>{
     onAuthStateChanged(auth, (user)=>{
     if(user){
-        // alert("You are Logged In")
         setUser(user)
     }else {
-        // alert("You are Logged Out")
         setUser(null)
     }
     })
-   },[])
+   },[auth])
   
   const addDocument=async()=>{
     const collectionRef= collection(database, 'users')
@@ -51,7 +40,6 @@ const auth= getAuth();
       imageUrl: imgUrl
   })
   .then(() => {
-    // Success message or further action
     alert("Document Added Successfully")
     getDetails()
   })
@@ -87,26 +75,14 @@ const auth= getAuth();
   
   const getDetails = async(user)=>{
     const collectionRef= collection(database, 'users')
-    // const data = await getDocs(collectionRef);  //async and await is used to run the next code if and only after getting data 
-    //         setArray(data.docs.map((item)=>{
-    //             return {...item.data(), id: item.id}
-    //         }))
 
-                //for real time
+                //for real time update
                  onSnapshot(collectionRef, (response)=>{  //for selected response
                         setArray(
                                     response.docs.map((item)=>{
                                         return {...item.data(), id: item.id};
                                     }))
                     })
-            //for selected only in real time
-            // const uidQuery =query(collectionRef, where("uid", "==", user.uid) )
-            //      onSnapshot(uidQuery, (response)=>{  //for selected response
-            //             setArray(
-            //                         response.docs.map((item)=>{
-            //                             return {...item.data(), id: item.id};
-            //                         }))
-            //         })
 }
 useEffect(()=>{
   getDetails()
@@ -145,17 +121,15 @@ useEffect(()=>{
       
       <p>{uploadProgress}</p>
       <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
-      {/* <button onClick={addDocName}>Add Document Name</button> */}
       <input type="file" name='document' onChange={(event)=>handleUpload(event)}  />
       <button onClick={addDocument}>Add Document</button>
-      {/* <button onClick={getDetails}>show document</button>  */}  {/*use if u are using get doc */}
-      {/* <a href="{imgUrl}">See Your Document</a> */}
+      {/* displaying data if user is present */}
       {user? (
         array.map((content)=>{
           return(
           <div>
             <h4>{content.documentName}</h4>
-            <img src={content.imageUrl} /><br />
+            <img src={content.imageUrl}  alt='document'/><br />
             <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
             <button onClick={()=>updateData(content.id)}>update Document Name</button>
             <button onClick={()=>deleteData(content.id)}>Delete Document</button>

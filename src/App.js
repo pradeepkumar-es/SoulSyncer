@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import './App.css';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -10,21 +8,12 @@ import MyProfile from './components/MyProfile';
 import ManageDocument from './components/ManageDocument';
 
 function App() {
-  // const auth= getAuth();
-  // useEffect(()=>{
-  //   onAuthStateChanged(auth, (data)=>{
-  //   if(data){
-  //       alert("You are Logged In")
-  //   }else {
-  //       alert("You are Logged Out")
-  //   }
-  //   })
-  //  },[])
   return (
     <div className="App">
       <header className="App-header">
       
-        <Router>
+      {/* To link different pages to each other */}
+        <Router>  
         <h2>Government Doc Vault</h2>
           <Routes>
             <Route path='/' element={<Home/>} exact/>
