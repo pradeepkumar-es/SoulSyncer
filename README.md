@@ -19,6 +19,8 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+
+### Deployement
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -26,3 +28,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+I have deployed my app on netlify using continuous deployement.
+here is the link of my app ( https://astounding-wisp-02e88b.netlify.app/ )
+it will get updated whenever github code get updated
