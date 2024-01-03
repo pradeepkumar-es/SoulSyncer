@@ -1,11 +1,6 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,4 +18,19 @@
 .myprofile-managedoc{
   cursor: pointer;
   color: rgb(40, 100, 212);
+}
+button:hover{
+  cursor: pointer;
+}
+
+/* styling for screen size of maximum 480px */
+@media screen and (max-width:480px) {
+  .component-managedoc{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+input, button {
+  margin: 5px 2px;
 }

@@ -114,7 +114,7 @@ useEffect(()=>{
           })
         }
   return (
-    <div>
+    <div className='component-managedoc'>
       <p>My Documents</p>
       <Link to='/myprofile'>My Profile</Link>
       <Logout />
@@ -127,7 +127,7 @@ useEffect(()=>{
       {user? (
         array.map((content)=>{
           return(
-          <div>
+          <div  >
             <h4>{content.documentName}</h4>
             <img src={content.imageUrl}  alt='document'/><br />
             <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
