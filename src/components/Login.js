@@ -37,7 +37,7 @@ export default function Login() {
     }
     })
     }
-   ,[])
+   ,[auth])
     return (
         <div>  
             {/* displaying user's profile, if on authetication change we are getting user, otherwise displaying login inteface.*/}

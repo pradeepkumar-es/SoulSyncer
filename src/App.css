@@ -34,3 +34,7 @@ button:hover{
 input, button {
   margin: 5px 2px;
 }
+.image-uploaded{
+  max-width: 300px;
+  max-height: 300px;
+}

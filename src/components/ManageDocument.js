@@ -129,7 +129,7 @@ useEffect(()=>{
           return(
           <div  >
             <h4>{content.documentName}</h4>
-            <img src={content.imageUrl}  alt='document'/><br />
+            <img src={content.imageUrl}  alt='document' className='image-uploaded'/><br />
             <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
             <button onClick={()=>updateData(content.id)}>update Document Name</button>
             <button onClick={()=>deleteData(content.id)}>Delete Document</button>
