@@ -11,6 +11,7 @@ import { collection,
          updateDoc, //for update doc
          deleteDoc,
          onSnapshot, //for get Data //for real time update
+         query, where
       } from 'firebase/firestore';
 import { v4 } from 'uuid';   //gor generating unique id for different uploads to rename it
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -33,11 +34,12 @@ const auth= getAuth(); //firebase
     })
    },[auth])
   
-  const addDocument=async()=>{
+  const addDocument=async(userdata)=>{
     const collectionRef= collection(database, 'users')
     await addDoc(collectionRef, {
       documentName: docName,
-      imageUrl: imgUrl
+      imageUrl: imgUrl,
+      userId : userdata.uid
   })
   .then(() => {
     alert("Document Added Successfully")
@@ -48,7 +50,9 @@ const auth= getAuth(); //firebase
     alert(error.message)
   });
   }
-
+  const handleAdd=()=>{
+    addDocument(user);
+  }
   const handleUpload=(event)=>{
         const storageRef = ref(storage, `images/${v4()}`)
         const uploadTask = uploadBytesResumable(storageRef, event.target.files[0]);
@@ -73,8 +77,9 @@ const auth= getAuth(); //firebase
 
   //getting data to display on browser 
   
-  const getDetails = async(user)=>{
+  const getDetails = async(userdata)=>{
     const collectionRef= collection(database, 'users')
+    // const ageQuery = query(collectionRef, where("userId", "==" , userdata.uid))
 
                 //for real time update
                  onSnapshot(collectionRef, (response)=>{  //for selected response
@@ -85,11 +90,11 @@ const auth= getAuth(); //firebase
                     })
 }
 useEffect(()=>{
-  getDetails()
-},[])
+  getDetails(user)
+},[user])
 
         const updateData=(id)=>{
-          const docToUpdate = doc(database, 'users', id ) //in the last parameter it is teacher id
+          const docToUpdate = doc(database, 'users', id ) //in the last parameter it is  id
           updateDoc(docToUpdate,{
             documentName: docName,
             // imageUrl: imgUrl
@@ -122,9 +127,12 @@ useEffect(()=>{
       <p>{uploadProgress}</p>
       <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
       <input type="file" name='document' onChange={(event)=>handleUpload(event)}  />
-      <button onClick={addDocument}>Add Document</button>
+      <button onClick={handleAdd}>Add Document</button>
+      {/* <button onClick={addDocument}>Add Document</button> */}
+       {/* <p>{user.uid}</p>
+      <p>{user.email}</p>  */}
       {/* displaying data if user is present */}
-      {user? (
+      {array? (
         array.map((content)=>{
           return(
           <div  >
