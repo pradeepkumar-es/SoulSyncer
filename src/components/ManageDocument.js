@@ -28,6 +28,7 @@ const auth= getAuth(); //firebase
     onAuthStateChanged(auth, (user)=>{
     if(user){
         setUser(user)
+        getDetails(user)
     }else {
         setUser(null)
     }
@@ -79,10 +80,10 @@ const auth= getAuth(); //firebase
   
   const getDetails = async(userdata)=>{
     const collectionRef= collection(database, 'users')
-    // const ageQuery = query(collectionRef, where("userId", "==" , userdata.uid))
+    const ageQuery =  query(collectionRef, where("userId", "==" , userdata.uid))
 
                 //for real time update
-                 onSnapshot(collectionRef, (response)=>{  //for selected response
+             onSnapshot(ageQuery, (response)=>{  //for selected response
                         setArray(
                                     response.docs.map((item)=>{
                                         return {...item.data(), id: item.id};
@@ -132,7 +133,7 @@ useEffect(()=>{
        {/* <p>{user.uid}</p>
       <p>{user.email}</p>  */}
       {/* displaying data if user is present */}
-      {array? (
+      {(array.length>0)? (
         array.map((content)=>{
           return(
           <div  >
