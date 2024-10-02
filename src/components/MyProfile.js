@@ -8,11 +8,10 @@ function MyProfile(props) { //receives props
     const manageDoc=()=>{
         navigate('/managedocument')  //navigation to manage doc component
     }
-
   return (
-    <div>
-      My Profile
-      <p id='userId'>User Id: {props.uid}</p>
+    <div className='profile'>
+      <h4>My Profile</h4>
+      <p id='userId'>My Id: {props.uid}</p>
       <p id='userEmail'>Email: {props.user}</p>
       <p className='myprofile-managedoc' onClick={manageDoc}>Manage My Document</p> 
       <Logout/>

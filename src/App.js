@@ -10,11 +10,9 @@ import ManageDocument from './components/ManageDocument';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
       
       {/* To link different pages to each other */}
         <Router>  
-        <h2>Government Doc Vault</h2>
           <Routes>
             <Route path='/' element={<Home/>} exact/>
             <Route path='/registration' element={<Registration/>} exact/>
@@ -24,7 +22,6 @@ function App() {
             <Route path='/managedocument' element={<ManageDocument/>} exact/>
           </Routes>
         </Router>
-      </header>
     </div>
   );
 }

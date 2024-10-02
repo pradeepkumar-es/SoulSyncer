@@ -15,6 +15,7 @@ import { collection,
       } from 'firebase/firestore';
 import { v4 } from 'uuid';   //gor generating unique id for different uploads to rename it
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import MyProfile from './MyProfile'
 
 function ManageDocument() { //functional component to manage document
   const [array, setArray] = useState([])
@@ -80,7 +81,7 @@ const auth= getAuth(); //firebase
   
   const getDetails = async(userdata)=>{
     const collectionRef= collection(database, 'users')
-    const ageQuery =  query(collectionRef, where("userId", "==" , userdata.uid))
+    const ageQuery =  query(collectionRef, where("userId", "==" , `${userdata.uid}`))
 
                 //for real time update
              onSnapshot(ageQuery, (response)=>{  //for selected response
@@ -120,11 +121,12 @@ useEffect(()=>{
           })
         }
   return (
-    <div className='component-managedoc'>
+    <div className='documentDashboard'>
+      <div className='sidebar'>
+        <Logout />
+      </div>
+      <div className='main-panel'>
       <p>My Documents</p>
-      <Link to='/myprofile'>My Profile</Link>
-      <Logout />
-      
       <p>{uploadProgress}</p>
       <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
       <input type="file" name='document' onChange={(event)=>handleUpload(event)}  />
@@ -150,6 +152,7 @@ useEffect(()=>{
           <p>No Document Found! Add Your Document securely to get accessible everywhere online</p>
         )
       }
+      </div>
     </div>
   )
 }
