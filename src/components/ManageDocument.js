@@ -123,6 +123,9 @@ useEffect(()=>{
   return (
     <div className='documentDashboard'>
       <div className='sidebar'>
+        <div className='nav-tab'>
+          Hello
+        </div>
         <Logout />
       </div>
       <div className='main-panel'>
