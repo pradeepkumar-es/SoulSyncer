@@ -30,5 +30,5 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 I have deployed my app on netlify using continuous deployement.
-here is the link of my app ( https://astounding-wisp-02e88b.netlify.app/ )
+here is the link of my app (https://government-doc.netlify.app/)
 it will get updated whenever github code get updated
