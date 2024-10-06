@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { storage,database } from '../firebase'
+import { MdCloudUpload } from "@react-icons/all-files/md/MdCloudUpload";
 import Logout from './Logout'
 import { Link } from 'react-router-dom'
 import {ref, 
@@ -128,26 +129,36 @@ useEffect(()=>{
         </div>
         <Logout />
       </div>
-      <div className='main-panel'>
+      <div className='mainPanel'>
       <p>My Documents</p>
       <p>{uploadProgress}</p>
       <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
-      <input type="file" name='document' onChange={(event)=>handleUpload(event)}  />
+      <form className='inputForm' action="" onClick={()=>{document.getElementById("uploadInput").click()}}> {/* click() method simulates a mouse click on an element.*/}
+      <input id='uploadInput' type="file" name='document' onChange={(event)=>handleUpload(event)}  />
+      <div>
+      <MdCloudUpload className='uploadIcons'/>
+      </div>
+      
+      </form>
       <button onClick={handleAdd}>Add Document</button>
       {/* <button onClick={addDocument}>Add Document</button> */}
        {/* <p>{user.uid}</p>
       <p>{user.email}</p>  */}
       {/* displaying data if user is present */}
+      <h3>Files</h3>
+      <div className='Alldocument'>
       {(array.length>0)? (
         array.map((content)=>{
           return(
-          <div  >
+          <div className='document' >
+            <div >
+            <img className='docImage' src={content.imageUrl}  alt='document' /><br />
+            </div>
             <h4>{content.documentName}</h4>
-            <img src={content.imageUrl}  alt='document' className='image-uploaded'/><br />
             <input type="text" name='documentName' placeholder='Document Name' onChange={(event)=>setDocName(event.target.value)} />
             <button onClick={()=>updateData(content.id)}>update Document Name</button>
             <button onClick={()=>deleteData(content.id)}>Delete Document</button>
-            <hr />
+            {/* <hr /> */}
           </div>
           )
         })) 
@@ -155,6 +166,7 @@ useEffect(()=>{
           <p>No Document Found! Add Your Document securely to get accessible everywhere online</p>
         )
       }
+      </div>
       </div>
     </div>
   )
