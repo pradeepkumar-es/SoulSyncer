@@ -1,14 +1,15 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.root{
-  --templateBackgroundColor:rgb(144,224,235);
+.root {
+  --templateBackgroundColor: rgb(144, 224, 235);
 }
 .App {
   align-items: center;
@@ -22,7 +23,9 @@ html, body {
 .App-link {
   color: #61dafb;
 }
-.home, .login, .register{
+.home,
+.login,
+.register {
   height: 20em;
   display: flex;
   align-items: center;
@@ -31,7 +34,10 @@ html, body {
   gap: 1em;
   padding: 0 4em;
 }
-.home .info, .login .info, .register .info, .login .welcome{
+.home .info,
+.login .info,
+.register .info,
+.login .welcome {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,96 +48,100 @@ html, body {
   width: 100%;
   padding: 1.4em;
 }
-.form h3{
-  margin-bottom:.8em ;
+.form h3 {
+  margin-bottom: 0.8em;
 }
-.login .form, .register .form{
+.login .form,
+.register .form {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid rgb(144,224,235);
+  border: 1px solid rgb(144, 224, 235);
   border-radius: 10px;
   padding: 1.4em;
   gap: 2px;
 }
-.login .form input, .register .form input{
+.login .form input,
+.register .form input {
   width: 100%;
   padding: 5px;
-  border: 1px solid rgb(144,224,235);
+  border: 1px solid rgb(144, 224, 235);
   border-radius: 10px;
 }
-.login .form button, .register .form button{
+.login .form button,
+.register .form button {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid rgb(144,224,235);
+  border: 1px solid rgb(144, 224, 235);
   background-color: var(--templateBackgroundColor);
   padding: 5px;
   color: white;
   font-weight: bold;
 }
-.myprofile-managedoc{
+.myprofile-managedoc {
   cursor: pointer;
   color: rgb(4, 4, 68);
 }
-.login .form button:hover, .register .form button:hover{
+.login .form button:hover,
+.register .form button:hover {
   cursor: pointer;
-  background-color:rgb(144,224,235);
+  background-color: rgb(144, 224, 235);
   color: black;
 }
-.documentDashboard{
+.documentDashboard {
   display: flex;
   flex-direction: row;
   height: 100vh;
 }
-.sidebar{
+.sidebar {
   left: 0;
   position: absolute;
   height: 100%;
   min-width: 10em;
-  background-color: rgb(6,54,122);
+  background-color: rgb(6, 54, 122);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
 }
-.mainPanel{
+.mainPanel {
   left: 10em;
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: rgb(235,242,252);
+  background-color: rgb(235, 242, 252);
   padding: 2em;
   /* width: 100vw; */
   /* height: 100%; */
 }
-.Alldocument{
+.Alldocument {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: .7em;
+  gap: 0.7em;
 }
-.document{
+.document {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 270px;
-  height: 260px;
+  height: 270px;
   /* border: 1px solid #61dafb; */
   border-radius: 5px;
-  padding: 15px;
+  padding: 10px;
   background-color: white;
 }
-.document .docImage{
- width: 250px;
- height: 180px;
+.document .docImage {
+  width: 250px;
+  height: 180px;
   object-fit: cover;
 }
-.inputForm{
+.inputForm {
   width: 250px;
   height: 180px;
   padding: 1em;
@@ -140,31 +150,110 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
-.inputForm input{
+.inputForm #uploadInput {
   display: none;
 }
-.uploadIcons{
+.uploadIcons {
   width: 35px;
   height: 35px;
+  color: #266fd5;
 }
-input, button {
+.progressText {
+  color: #266fd5;
+}
+.uploadedDocName {
+  text-align: left;
+  margin-top: 0.8em;
+  color: #06367a;
+}
+.AddDocAction {
+  display: flex;
+  width: 250px;
+  height: 130px;
+  flex-direction: column;
+}
+input,
+button {
   margin: 5px 2px;
 }
-.image-uploaded{
+.AddDocAction input,
+.AddDocAction button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+.AddDocAction button {
+  background-color: green;
+  border-style: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.AddDocAction button:hover {
+  background-color: greenyellow;
+}
+.mainPanelHeading {
+  text-align: center;
+  color: #06367a;
+  margin-bottom: 0.7em;
+}
+.filePanel-heading,
+.uploadPanelHeading {
+  text-align: left;
+  color: #06367a;
+  margin-bottom: 0.7em;
+}
+.image-uploaded {
   max-width: 300px;
   max-height: 300px;
 }
-.infoImage{
+.infoImage {
   max-height: 400px;
   max-width: 250px;
 }
+.uploadedDoc{
+  display: none;
+}
+.deleteDoc {
+  color: red;
+  position: relative;
+  z-index: 1;
+  bottom: 28px;
+  left: 115px;
+  cursor: pointer;
+}
+.updateDoc{
+  display: flex;
+}
+.updateDoc input{
+  border: 1px solid #06367a;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 3px 0 5px;
+}
+.updateDoc button{
+  background-color: green;
+  border: none;
+  padding: 10x;
+  border-radius: 5px;
+  width: 5em;
+  cursor: pointer;
+  margin: 0 5px 0 0;
+}
+.updateDoc button:hover{
+  background-color: greenyellow;
+  color: black;
+}
 /* styling for screen size of maximum 768px */
-@media screen and (max-width:768px) {
-  .home, .login, .register{
+@media screen and (max-width: 768px) {
+  .home,
+  .login,
+  .register {
     flex-direction: column;
   }
-  .documentDashboard{
+  .documentDashboard {
     display: flex;
     flex-direction: column;
   }
@@ -172,8 +261,9 @@ input, button {
     max-height: 150px;
     max-width: 100px;
   } */
-  .home, .login, .register{
+  .home,
+  .login,
+  .register {
     padding: 0 1em;
   }
 }
-
