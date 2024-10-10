@@ -14,7 +14,7 @@ function MyProfile(props) { //receives props
       <p id='userId'>My Id: {props.uid}</p>
       <p id='userEmail'>Email: {props.user}</p>
       <p className='myprofile-managedoc' onClick={manageDoc}>Manage My Document</p> 
-      <Logout/>
+      {/* <Logout/> */}
     </div>
   )
 }

@@ -91,12 +91,29 @@ body {
   background-color: rgb(144, 224, 235);
   color: black;
 }
+.logout{
+  border-style: none;
+  cursor: pointer;
+  color: #06367a;
+  background-color: transparent;
+}
 .documentDashboard {
   display: flex;
   flex-direction: row;
   height: 100vh;
 }
+.welcome{
+  margin-bottom: .5em;
+  color: #282c34;
+}
+.headerNav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .sidebar {
+  /* debugging */
+  display: none;
   left: 0;
   position: absolute;
   height: 100%;
@@ -108,7 +125,9 @@ body {
   flex-direction: column;
 }
 .mainPanel {
-  left: 10em;
+  /* for debugging */
+  /* left: 10em; */
+  left: 0em;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -167,6 +186,9 @@ body {
   text-align: left;
   margin-top: 0.8em;
   color: #06367a;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 .AddDocAction {
   display: flex;
@@ -213,8 +235,9 @@ button {
   max-height: 400px;
   max-width: 250px;
 }
-.uploadedDoc{
-  display: none;
+
+.uploadedDoc .edit{
+  color: black;
 }
 .deleteDoc {
   color: red;
@@ -245,6 +268,9 @@ button {
 .updateDoc button:hover{
   background-color: greenyellow;
   color: black;
+}
+.noDataMessage{
+  color: #06367a;
 }
 /* styling for screen size of maximum 768px */
 @media screen and (max-width: 768px) {

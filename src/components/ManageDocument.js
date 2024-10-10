@@ -27,7 +27,7 @@ function ManageDocument() {
   const [imgUrl, setImgUrl] = useState("");
   const [docName, setDocName] = useState("");
   const [user, setUser] = useState(null);
-
+const [selectedImage, setSelectedImage] = useState(null);
   const auth = getAuth(); //firebase
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -123,7 +123,11 @@ function ManageDocument() {
         getDetails();
       })
       .then((error) => {
-        alert(error.message);
+        if(error){
+          alert(error.message);
+        }else{
+          return;
+        }
       });
   };
   const deleteData = (id) => {
@@ -137,6 +141,13 @@ function ManageDocument() {
         alert(err.message);
       });
   };
+  const handleEdit=(content)=>{
+    setSelectedImage(selectedImage===content.id?null:content.id)
+  }
+  const handleUpdate = (content)=>{
+    updateData(content.id)
+    setSelectedImage(null)
+  }
   return (
     <div className="documentDashboard">
       <div className="sidebar">
@@ -144,7 +155,8 @@ function ManageDocument() {
         <Logout />
       </div>
       <div className="mainPanel">
-        <h1 className="mainPanelHeading">My Documents</h1>
+        <div className="headerNav"><h1 className="mainPanelHeading">Cloud Vault</h1> <div><Logout/></div></div>
+        <div className="welcome"><h1>Welcome Back!</h1></div>
         <h3 className="uploadPanelHeading">Upload Your File</h3>
         <form
           className="inputForm"
@@ -185,9 +197,9 @@ function ManageDocument() {
         <h3 className="filePanel-heading">My Uploaded Files</h3>
         <div className="Alldocument">
           {array.length > 0 ? (
-            array.map((content) => {
+            array.map((content, index) => {
               return (
-                <div className="document">
+                <div className="document" key={index}>
                   <div>
                     <img
                       className="docImage"
@@ -197,29 +209,35 @@ function ManageDocument() {
                     <MdDelete className="deleteDoc" title="Delete" onClick={()=>deleteData(content.id)}  size={15}/>
                     <br />
                   </div>
-                  <div className="uploadedDoc">
-                    <h4 className="uploadedDocName">
-                      {content.documentName}
-                      <MdOutlineEdit style={{ color: "red" }} size={18} />
-                    </h4>
-                  </div>
-                  <div className="updateDoc">
+                  {
+                    selectedImage===content.id
+                    ?
+                    <div className="updateDoc">
                   <input
                     type="text"
                     name="documentName"
+                    // value={content.documentName}
                     placeholder="Document Name"
                     onChange={(event) => setDocName(event.target.value)}
                   />
-                  <button onClick={() => updateData(content.id)}>
+                  <button onClick={() => handleUpdate(content)}>
                     Update
                   </button>
                   </div>
+                  :
+                  <div className="uploadedDoc">
+                  <h4 className="uploadedDocName">
+                    <span>{content.documentName}</span>
+                    <span><MdOutlineEdit className="edit" size={16} onClick={()=>handleEdit(content)}/></span>
+                  </h4>
+                </div>
+                  }
                   {/* <hr /> */}
                 </div>
               );
             })
           ) : (
-            <p>
+            <p className="noDataMessage">
               No Document Found! Add Your Document securely to get accessible
               everywhere online
             </p>
