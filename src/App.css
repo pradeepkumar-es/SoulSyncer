@@ -1,8 +1,8 @@
-html,
+/* html,
 body {
   margin: 0;
   padding: 0;
-}
+} */
 * {
   margin: 0;
   padding: 0;
@@ -101,6 +101,7 @@ body {
   display: flex;
   flex-direction: row;
   height: 100vh;
+  width: 100vw;
 }
 .welcome{
   margin-bottom: .5em;
@@ -133,8 +134,8 @@ body {
   flex-direction: column;
   background-color: rgb(235, 242, 252);
   padding: 2em;
-  /* width: 100vw; */
-  /* height: 100%; */
+  width: 100vw;
+  height: 100vh;
 }
 .Alldocument {
   display: flex;
@@ -142,6 +143,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.7em;
+  background-color: rgb(235, 242, 252);
 }
 .document {
   display: flex;
@@ -282,6 +284,9 @@ button {
   .documentDashboard {
     display: flex;
     flex-direction: column;
+  }
+  .Alldocument{
+    justify-content: center;
   }
   /* .infoImage{
     max-height: 150px;
